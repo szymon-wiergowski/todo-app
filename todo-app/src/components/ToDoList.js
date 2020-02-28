@@ -1,4 +1,4 @@
-zimport React from "react";
+import React from "react";
 
 import { List, Button, Icon } from "semantic-ui-react";
 
