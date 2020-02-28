@@ -2,8 +2,8 @@ import React from "react";
 
 import { List, Segment } from "semantic-ui-react";
 
-import ToDoList from "./ToDoList";
-import ToDoEditList from "./ToDoEditList";
+import ToDoItem from "./ToDoItem";
+import ToDoEditItem from "./ToDoEditItem";
 
 export const BASE_URL = "https://rest-api-jfdz12-sw.firebaseio.com";
 
@@ -40,7 +40,7 @@ export default class ToDoListBoard extends React.Component {
           <List divided relaxed size="large">
             {todo.map(item => {
               return editTaskId === item.id ? (
-                <ToDoEditList
+                <ToDoEditItem
                   key={item.id}
                   todo={todo}
                   done={item.done}
@@ -53,7 +53,7 @@ export default class ToDoListBoard extends React.Component {
                   onEdit={this.handleOnEdit}
                 />
               ) : (
-                <ToDoList
+                <ToDoItem
                   key={item.id}
                   todo={todo}
                   done={item.done}
