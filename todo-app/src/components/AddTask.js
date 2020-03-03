@@ -1,54 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Button, Form, Message, Icon, Input } from "semantic-ui-react";
 
 import { BASE_URL } from "./ToDo";
 
-const initialFormState = {
-  done: false,
-  task: "",
-  dateOfCreateTask: "",
-  taskError: false,
-  formError: false
-};
+const AddTask = (props) => {
+  const [task, setTask] = useState("");
+  const [dateOfCreateTask, setDateOfCreateTask] = useState("");
+  const [taskError, setTaskError] = useState(false);
+  const [formError, setFormError] = useState(false);
 
-export default class AddTask extends React.Component {
-  state = {
-    ...initialFormState
+  const handleOnChange = event => {
+    setTask(event.target.value);
+    setDateOfCreateTask(Date.now());
   };
 
-  handleOnChange = event => {
-    this.setState({
-      task: event.target.value,
-      dateOfCreateTask: Date.now()
-    });
-  };
-
-  handleOnClick = event => {
+  const handleOnClick = event => {
     event.preventDefault();
 
     let error = false;
 
-    const taskLength = this.state.task.length;
+    const taskLength = task.length;
 
     if (taskLength < 5 || taskLength > 35) {
-      this.setState({ taskError: true });
+      setTaskError(true);
       error = true;
     } else {
-      this.setState({ taskError: false });
+      setTaskError(false);
     }
 
     if (error) {
-      this.setState({ formError: true });
+      setFormError(true);
       return;
     }
-
-    this.setState({ formError: false });
+    setFormError(false);
 
     const formattedFormData = {
-      ...this.state,
-      taskError: null,
-      formError: null
+      task,
+      done: false,
+      dateOfCreateTask
     };
 
     fetch(`${BASE_URL}/todo.json`, {
@@ -56,45 +46,44 @@ export default class AddTask extends React.Component {
       body: JSON.stringify(formattedFormData)
     })
       .then(() => {
-        this.props.onAdd();
-        this.setState(initialFormState);
+        props.onAdd();
+        setTask("");
+        setDateOfCreateTask("");
       })
       .catch(err => {
         alert(err.message);
       });
   };
 
-  render() {
-    const { task, taskError } = this.state;
+  return (
+    <Form size="large">
+      <h3>Add task</h3>
+      <Form.Field>
+        <Input
+          type="text"
+          value={task}
+          onChange={handleOnChange}
+          placeholder="New task"
+        />
+        {taskError ? (
+          <Message negative>
+            <Message.Header>Incorrect input</Message.Header>
+            <p>The task should be between 5 and 35 characters</p>
+          </Message>
+        ) : null}
+      </Form.Field>
+      <Button
+        size="small"
+        type="submit"
+        icon
+        color="green"
+        onClick={handleOnClick}
+        disabled={!task}
+      >
+        <Icon name="add" />
+      </Button>
+    </Form>
+  );
+};
 
-    return (
-      <Form size="large">
-        <h3>Add task</h3>
-        <Form.Field>
-          <Input
-            type="text"
-            value={task}
-            onChange={this.handleOnChange}
-            placeholder="New task"
-          />
-          {taskError ? (
-            <Message negative>
-              <Message.Header>Incorrect input</Message.Header>
-              <p>The task should be between 5 and 35 characters</p>
-            </Message>
-          ) : null}
-        </Form.Field>
-        <Button
-          size="small"
-          type="submit"
-          icon
-          color="green"
-          onClick={this.handleOnClick}
-          disabled={!task}
-        >
-          <Icon name="add" />
-        </Button>
-      </Form>
-    );
-  }
-}
+export default AddTask;
