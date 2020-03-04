@@ -1,74 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import firebase from "firebase";
 
-// const Auth = () => {
-//   state = {
-//     user: null,
-//     ref: null
-//   };
+const Auth = props => {
+  const [user, setUser] = useState(null);
+  const [ref, setRef] = useState(null);
 
-//   componentDidMount() {
-//     const authRef = firebase.auth().onAuthStateChanged(user => {
-//       this.setState({
-//         user
-//       });
-//     });
-//     this.setState({
-//       ref: authRef
-//     });
-//   }
-
-//   componentWillUnmount() {
-//     if (this.state.ref) {
-//       this.state.ref();
-//     }
-//   }
-
-  
-//     return this.state.user ? (
-//       this.props.children
-//     ) : (
-//       <>
-//         <div style={{ textAlign: "center" }}>
-//           <h1>Please sign in</h1>
-//         </div>
-//       </>
-//     );
-// }
-
-export default class Auth extends React.Component {
-  state = {
-    user: null,
-    ref: null
-  };
-
-  componentDidMount() {
-    const authRef = firebase.auth().onAuthStateChanged(user => {
-      this.setState({
-        user
+  useEffect(() => {
+    return () => {
+      const authRef = firebase.auth().onAuthStateChanged(user => {
+        setUser(user);
       });
-    });
-    this.setState({
-      ref: authRef
-    });
-  }
+      setRef(authRef);
+      if (ref) {
+        ref();
+      }
+    };
+  });
 
-  componentWillUnmount() {
-    if (this.state.ref) {
-      this.state.ref();
-    }
-  }
+  return user ? (
+    props.children
+  ) : (
+    <>
+      <div style={{ textAlign: "center" }}>
+        <h1>Please sign in</h1>
+      </div>
+    </>
+  );
+};
 
-  render() {
-    return this.state.user ? (
-      this.props.children
-    ) : (
-      <>
-        <div style={{ textAlign: "center" }}>
-          <h1>Please sign in</h1>
-        </div>
-      </>
-    );
-  }
-}
+export default Auth;

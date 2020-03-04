@@ -4,11 +4,11 @@ import { Button, Form, Message, Icon, Input } from "semantic-ui-react";
 
 import { BASE_URL } from "./ToDo";
 
-const AddTask = (props) => {
+const AddTask = props => {
   const [task, setTask] = useState("");
   const [dateOfCreateTask, setDateOfCreateTask] = useState("");
   const [taskError, setTaskError] = useState(false);
-  const [formError, setFormError] = useState(false);
+  const [, setFormError] = useState(false);
 
   const handleOnChange = event => {
     setTask(event.target.value);

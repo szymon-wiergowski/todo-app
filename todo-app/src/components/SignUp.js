@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
+
+import firebase from "firebase";
 
 import {
   Button,
@@ -8,9 +12,6 @@ import {
   Segment,
   Message
 } from "semantic-ui-react";
-import firebase from "firebase";
-import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
 
 export default () => {
   const [email, setEmail] = useState("");

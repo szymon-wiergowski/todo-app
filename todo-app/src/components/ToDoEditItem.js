@@ -10,7 +10,7 @@ const ToDoEditList = props => {
 
   const [editTask, setEditTask] = useState(item.task);
   const [taskError, setTaskError] = useState(false);
-  const [formError, setFormError] = useState(false);
+  const [, setFormError] = useState(false);
 
   const handleOnChange = event => {
     setEditTask(event.target.value);
