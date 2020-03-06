@@ -50,8 +50,13 @@ const ToDo = () => {
     return (
       <Segment>
         <Dimmer active>
-          <Loader size="medium">Loading</Loader>
+          <Loader size="massive">Loading</Loader>
         </Dimmer>
+        <Image src="/images/wireframe/short-paragraph.png" />
+        <Image src="/images/wireframe/short-paragraph.png" />
+        <Image src="/images/wireframe/short-paragraph.png" />
+        <Image src="/images/wireframe/short-paragraph.png" />
+        <Image src="/images/wireframe/short-paragraph.png" />
         <Image src="/images/wireframe/short-paragraph.png" />
       </Segment>
     );
