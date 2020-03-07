@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import firebase from "firebase";
 
-const Auth = props => {
+const Auth = (props) => {
   const [user, setUser] = useState(null);
   const [ref, setRef] = useState(null);
 
