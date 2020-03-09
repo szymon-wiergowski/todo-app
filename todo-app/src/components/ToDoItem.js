@@ -1,7 +1,6 @@
 import React from "react";
 
 import { List, Button, Icon } from "semantic-ui-react";
-import Calendar from "react-calendar";
 
 import Checkbox from "./Checkbox";
 import { BASE_URL } from "./ToDo";
@@ -20,10 +19,6 @@ export default props => {
   const handleOnEditClick = () => {
     onEdit(id);
   };
-
-  // const handleOnDateClick = () => {
-  //   // tutaj odpali się kalendarz
-  // }
 
   return (
     <div key={item.id}>
@@ -54,14 +49,9 @@ export default props => {
         id={props.item.id}
         item={props.item.task}
       />
-      <Button
-        size="small"
-        icon
-        color="yellow"
-        // onClick={handleOnDateClick}
-      >
-        <Icon name="calendar alternate outline" />
-      </Button>
+      <List.Item>
+        <List.Content>{console.log(item.dateOfCreateTask.toLocaleString())}</List.Content>
+      </List.Item>
       <hr />
     </div>
   );

@@ -32,7 +32,6 @@ const ToDoListBoard = props => {
           return editTaskId === item.id ? (
             <ToDoEditItem
               key={item.id}
-              todo={todo}
               done={item.done}
               id={item.id}
               item={item}
@@ -45,7 +44,6 @@ const ToDoListBoard = props => {
           ) : (
             <ToDoItem
               key={item.id}
-              todo={todo}
               done={item.done}
               id={item.id}
               item={item}
