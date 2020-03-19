@@ -11,7 +11,7 @@ export default () => {
     <Switch>
       <Route exact path="/">
         <div style={{ textAlign: "center" }}>
-          <h1>Welcome in simple ToDo app :)</h1>
+          <h1>Welcome in simple app :)</h1>
         </div>
       </Route>
       <Route path="/counter" component={Counter} />
