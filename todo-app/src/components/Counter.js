@@ -10,7 +10,7 @@ const Counter = ({ increment, decrement, reset, counter }) => {
   return (
     <div className="counter">
       <Container text>
-        <Header as="h2">Welcome to Counter</Header>
+        <Header className="counter_header" as="h2">Welcome to Counter</Header>
         <p className="counter_text">{`Current count: ${counter}`}</p>
       </Container>
       <Button.Group>
