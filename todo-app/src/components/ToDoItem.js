@@ -50,7 +50,7 @@ export default props => {
         item={props.item.task}
       />
       <List.Item>
-        <List.Content>{console.log(item.dateOfCreateTask.toLocaleString())}</List.Content>
+        <List.Content>{item.dateOfCreateTask}</List.Content>
       </List.Item>
       <hr />
     </div>

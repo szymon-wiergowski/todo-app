@@ -11,9 +11,11 @@ const BASE_URL = "https://rest-api-jfdz12-sw.firebaseio.com";
 // INITIAL STATE
 const initialState = {
   todo: [],
+  task: "",
   loading: false,
   error: null,
   adding: false,
+  dateOfCreateTask: "",
   done: false
 };
 
@@ -61,9 +63,8 @@ export const getTodo = () => dispatch => {
           id: key,
           ...data[key]
         };
-      });
-      setLoading(false);
-      setTodo(
+      })
+      dispatch(
         formattedData.sort(function(a, b) {
           return b.dateOfCreateTask - a.dateOfCreateTask;
         })

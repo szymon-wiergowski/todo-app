@@ -29,6 +29,9 @@ const Navigation = () => {
       <Link to="/todo">
         <Menu.Item name="todo">ToDo App</Menu.Item>
       </Link>
+      <Link to="/counter">
+        <Menu.Item name="counter">Counter</Menu.Item>
+      </Link>
       <Menu.Menu position="right">
         {!!user ? (
           <>
