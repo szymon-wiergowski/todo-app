@@ -20,6 +20,8 @@ export default props => {
     onEdit(id);
   };
 
+  const date = new Date(item.dateOfCreateTask);
+
   return (
     <div key={item.id}>
       <List.Item>
@@ -50,7 +52,9 @@ export default props => {
         item={props.item.task}
       />
       <List.Item>
-        <List.Content>{item.dateOfCreateTask}</List.Content>
+        <List.Content>
+          {date.toLocaleString()}
+        </List.Content>
       </List.Item>
       <hr />
     </div>
